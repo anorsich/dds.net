@@ -2,50 +2,54 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Bridge.Domain;
+using Bridge.Domain.Utils;
 using Dds.Net.Dto;
 using Dds.Net.Integration;
-using DealPbn = Dds.Net.Dto.DealPbn;
 using FutureTricks = Dds.Net.Dto.FutureTricks;
 
 namespace Dds.Net
 {
     public class DdsConnect
     {
-        public Dto.FutureTricks SolveBoardPbn(DealPbn dealPbn, int target, int solutions, int mode)
+        public FutureTricks SolveBoardPbn(BridgeGame game, int target, int solutions, int mode)
         {
-            if (dealPbn.CurrentTrickCards.Count > 3)
-                throw new ArgumentException("Invalid current trick cards count", "dealPbn.CurrentTrickCards");
+            if (game.CurrentTrick.Deck.Count > 3)
+                throw new ArgumentException("Invalid current trick cards count", "CurrentTrick.Deck.Count");
 
             var deal = new Integration.DealPbn();
-            deal.trump = (int)dealPbn.Trump;
-            deal.first = (int)dealPbn.TrickDealer;
+            deal.trump = game.Contract.Trump.Order;
+            deal.first = game.CurrentTrick.TrickDealer.Order;
 
             deal.currentTrickRank = new int[3];
             deal.currentTrickSuit = new int[3];
-            for (int i = 0; i < dealPbn.CurrentTrickCards.Count; i++)
+            for (int i = 0; i < game.CurrentTrick.Deck.Count; i++)
             {
-                deal.currentTrickRank[i] = (int)dealPbn.CurrentTrickCards[i].Rank;
-                deal.currentTrickSuit[i] = (int)dealPbn.CurrentTrickCards[i].Suit;
+                var card = game.CurrentTrick.Deck.Cards[i];
+                deal.currentTrickRank[i] = card.Rank.Score;
+                deal.currentTrickSuit[i] = card.Suit.Order;
             }
-            deal.remainCards = DdsHelper.PbnStringToChars(dealPbn.RemainCardsPbn);
+            deal.remainCards = DdsHelper.PbnStringToChars(BridgeHelper.ToPbn(game));
 
             var ddsResult = new Integration.FutureTricks();
 
             //TODO: Support mutiple threads.
-            DdsImport.SolveBoardPBN(deal, target, solutions, mode, ref ddsResult, 0);
+            var res = DdsImport.SolveBoardPBN(deal, target, solutions, mode, ref ddsResult, 0);
+            if (res != 1)
+                throw new DdsSolveBoardException(res);
 
             var result = new FutureTricks();
             result.Cards = ddsResult.cards;
             result.Nodes = ddsResult.nodes;
+            result.Scores = ddsResult.score.ToList();
             for (int i = 0; i < 13; i++)
             {
-
                 if (ddsResult.rank[i] != 0)
                 {
-                    Rank rank = (Rank)ddsResult.rank[i];
-                    Suit suit = (Suit)ddsResult.suit[i];
+                    var rank = new Rank(ddsResult.rank[i]);
+                    var suit = new Suit(ddsResult.suit[i]);
 
-                    result.FutureCards.Add(new Card(rank, suit));
+                    result.FutureCards.Cards.Add(new Card(rank, suit));
                 }
                 else
                 {
@@ -56,41 +60,55 @@ namespace Dds.Net
             return result;
         }
 
-        //TODO: Wrap args and make it public if needed.
-        /// <summary>
-        /// Custom wrapper for the DDS function "CalcDDtablePBN". Takes a char array containing a PBN code, and you must provide
-        /// a writable reference to the results struct.
-        /// </summary>
-        /// <param name="PBNCode"></param>
-        /// <param name="results"></param>
-        /// <returns></returns>
-        private static int CalculateMakeableContracts(string pbn, out DdTableResults results)
+        public BestCard SolveBoardPbnBestCard(BridgeGame game)
         {
-            // instantiate deal struct
-            DdTableDealPbn tdPBN = new DdTableDealPbn(DdsHelper.PbnStringToChars(pbn));
-            // instantiate resTable array
-            results.resTable = new int[20];
-            // call the external function in DDS.dll, if it fails, it will return something other than 1.
-            // The various returns and their values can be found in Bo Haglund's documentation.
-            if (DdsImport.CalcDDtablePBN(tdPBN, ref results) == 1)
+            var result = SolveBoardPbn(game,
+                //Parameter ”target” is the number of tricks to be won by the side to play, 
+                //    //-1 means that the program shall find the maximum number.
+                //    //For equivalent  cards only the highest is returned.
+                            -1,
+                //    //target=1-13, solutions=1:  Returns only one of the cards. 
+                //    //Its returned score is the same as target whentarget or higher tricks can be won. 
+                //    //Otherwise, score –1 is returned if target cannot be reached, or score 0 if no tricks can be won. 
+                //    //target=-1, solutions=1:  Returns only one of the optimum cards and its score.
+                            1, 0);
+
+            return new BestCard() { Card = result.FutureCards.Cards.First(), Score = result.Scores[0] };
+        }
+
+        public List<Contract> CalculateMakeableContracts(string pbn)
+        {
+            var ret = new List<Contract>();
+            var results = new DdTableResults();
+            var dto = new DdTableDealPbn(DdsHelper.PbnStringToChars(pbn));
+
+            var res = DdsImport.CalcDDtablePBN(dto, ref results);
+            if (res != 1)
+                throw new DdsCalcDDtableException(res);
+            /* 
+            *      S   H   D   C   NT
+            *  N   0   4   8   12  16
+            *  E   1   5   9   13  17
+            *  S   2   6   10  14  18
+            *  W   3   7   11  15  19
+            */
+
+            var index = 0;
+            foreach (Trump trump in Trump.Trumps)
             {
-                int[] resTable = results.resTable;
-                // the CalcDDtablePBN function returns the number of TRICKS the player can make, not the contract, so we take 6 from each result.
-                for (int ind = 0; ind < resTable.Length; ind++)
+                foreach (PlayerPosition player in PlayerPosition.Players)
                 {
-                    resTable[ind] = resTable[ind] - 6;
-                    if (resTable[ind] < 0)
-                        resTable[ind] = 0;
+                    ret.Add(new Contract()
+                    {
+                        Trump = trump,
+                        PlayerPosition = player,
+                        Value = results.resTable[index]
+                    });
+                    index++;
                 }
-                // map resTable values to proper locations
-                /*
-                 * This is where you I mapped the values from the array in a way I could easily follow.
-                 * I've done this in the Form code, it's long and tedious but it's just to show you how the array is structured.
-                 * See "DDS_Data_Structures.cs" for an index map of the resTable array.
-                 */
-                return 1;
             }
-            return 0;
+
+            return ret;
         }
     }
 }

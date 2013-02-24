@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Bridge.Domain;
 
 namespace Dds.Net.Dto
 {
@@ -9,7 +10,7 @@ namespace Dds.Net.Dto
     {
         public FutureTricks()
         {
-            FutureCards = new List<Card>();
+            FutureCards = new Deck();
         }
 
         /// <summary>
@@ -22,6 +23,8 @@ namespace Dds.Net.Dto
         /// </summary>
         public int Cards { get; set; }
 
-        public List<Card> FutureCards { get; set; }
+        public Deck FutureCards { get; set; }
+
+        public List<int> Scores { get; set; }
     }
 }

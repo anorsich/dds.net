@@ -1,0 +1,69 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DdsPlay;component/Resources/Styles/Brushes.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--  font families  -->
+    <FontFamily x:Key="Arial">Arial</FontFamily>
+    <FontFamily x:Key="ArialBold">Arial Bold</FontFamily>
+    <FontFamily x:Key="Georgia">Georgia</FontFamily>
+
+    <Style x:Key="DefaultLabelText">
+        <Setter Property="Control.FontFamily" Value="{StaticResource Georgia}" />
+        <Setter Property="Control.FontSize" Value="16" />
+        <Setter Property="Control.Foreground" Value="{StaticResource DefaultFontBrush}" />
+    </Style>
+
+    <Style x:Key="BoldLabelText">
+        <Setter Property="Control.FontFamily" Value="{StaticResource Georgia}" />
+        <Setter Property="Control.FontSize" Value="14" />
+        <Setter Property="Control.FontWeight" Value="Bold" />
+        <Setter Property="Control.Foreground" Value="{StaticResource DefaultFontBrush}" />
+    </Style>
+
+    <Style x:Key="ErrorLabelText">
+        <Setter Property="Control.FontFamily" Value="{StaticResource Georgia}" />
+        <Setter Property="Control.FontSize" Value="14" />
+        <Setter Property="Control.Foreground" Value="Red" />
+    </Style>
+
+    <!--  Button Fonts  -->
+    <Style x:Key="DefaultButtonText">
+        <Setter Property="Control.FontFamily" Value="{StaticResource Georgia}" />
+        <Setter Property="Control.FontSize" Value="16" />
+        <Setter Property="Control.Foreground" Value="{StaticResource DefaultFontBrush}" />
+    </Style>
+
+    <!--  Hyperlink Font  -->
+    <Style x:Key="DefaultHyperlinkText">
+        <Setter Property="Control.FontFamily" Value="{StaticResource Georgia}" />
+        <Setter Property="Control.FontSize" Value="16" />
+        <Setter Property="TextBlock.TextDecorations" Value="Underline" />
+        <Setter Property="Control.Foreground" Value="{StaticResource DefaultHyperlinkBrush}" />
+    </Style>
+
+    <!--  Dialog Header Font  -->
+    <Style x:Key="DefaultDialogHeaderText">
+        <Setter Property="Control.FontFamily" Value="{StaticResource Georgia}" />
+        <Setter Property="Control.FontSize" Value="18" />
+        <Setter Property="Control.FontWeight" Value="Bold" />
+        <Setter Property="Control.Foreground" Value="{StaticResource HeaderForegroundBrush}" />
+    </Style>
+
+    <!--  Header Font  -->
+    <Style x:Key="DefaultHeaderText">
+        <Setter Property="Control.FontFamily" Value="{StaticResource Georgia}" />
+        <Setter Property="Control.FontSize" Value="22" />
+        <Setter Property="Control.FontWeight" Value="Bold" />
+        <Setter Property="Control.Foreground" Value="{StaticResource DefaultFontBrush}" />
+    </Style>
+
+    <!--  Subheader Font  -->
+    <Style x:Key="DefaultSubheaderText">
+        <Setter Property="Control.FontFamily" Value="{StaticResource Georgia}" />
+        <Setter Property="Control.FontSize" Value="16" />
+        <Setter Property="Control.FontWeight" Value="Bold" />
+        <Setter Property="Control.Foreground" Value="{StaticResource DefaultFontBrush}" />
+    </Style>
+</ResourceDictionary>

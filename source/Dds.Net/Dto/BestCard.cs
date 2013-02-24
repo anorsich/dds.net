@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Bridge.Domain;
 
 namespace Dds.Net.Dto
 {
-    public enum Player
+    public class BestCard
     {
-        North = 0,
-        East = 1,
-        South = 2,
-        West = 3
+        public Card Card { get; set; }
+
+        public int Score { get; set; }
     }
 }

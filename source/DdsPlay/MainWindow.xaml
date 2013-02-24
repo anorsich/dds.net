@@ -1,0 +1,90 @@
+﻿<Window x:Class="DdsPlay.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:DdsPlay.Controls" Title="MainWindow"
+        Width="1200"
+        Height="1000"
+        WindowStartupLocation="CenterScreen">
+
+    <Canvas x:Name="LayoutRoot"
+            Background="#FFFFFFFF"
+            Loaded="LayoutRoot_Loaded">
+
+        <!--  Game Board  -->
+        <Controls:GameShape x:Name="GameShape"
+                            Canvas.Left="0"
+                            Canvas.Top="0" />
+
+
+
+        <!--  Trick Decks  -->
+        <Controls:DeckShape x:Name="Player1Trick"
+                            Canvas.Left="371"
+                            Canvas.Top="384" />
+        <Controls:DeckShape x:Name="Player2Trick"
+                            Canvas.Left="521"
+                            Canvas.Top="277" />
+        <Controls:DeckShape x:Name="Player3Trick"
+                            Canvas.Left="671"
+                            Canvas.Top="384" />
+        <Controls:DeckShape x:Name="Player4Trick"
+                            Canvas.Left="521"
+                            Canvas.Top="477" />
+
+        <!--  Player Hand Decks  -->
+        <TextBlock Canvas.Left="32"
+                   Canvas.Top="245"
+                   Width="134"
+                   Height="20"
+                   Style="{StaticResource DefaultLabelText}"
+                   Text="Player 1" />
+        <Controls:DeckShape x:Name="Player1Hand"
+                            Canvas.Left="25"
+                            Canvas.Top="273"
+                            CardSpacerX="0"
+                            CardSpacerY="20"
+                            MaxCardsSpace="10" />
+        <TextBlock Canvas.Left="402"
+                   Canvas.Top="225"
+                   Width="134"
+                   Height="20"
+                   Style="{StaticResource DefaultLabelText}"
+                   Text="Player 2" />
+        <Controls:DeckShape x:Name="Player2Hand"
+                            Canvas.Left="398"
+                            Canvas.Top="25"
+                            CardSpacerX="20"
+                            CardSpacerY="0"
+                            MaxCardsSpace="10" />
+        <TextBlock Canvas.Top="245"
+                   Canvas.Right="25"
+                   Width="134"
+                   Height="20"
+                   Style="{StaticResource DefaultLabelText}"
+                   Text="Player 3" />
+        <Controls:DeckShape x:Name="Player3Hand"
+                            Canvas.Top="273"
+                            Canvas.Right="25"
+                            CardSpacerX="0"
+                            CardSpacerY="20"
+                            MaxCardsSpace="10" />
+        <TextBlock Canvas.Left="286"
+                   Canvas.Bottom="225"
+                   Width="134"
+                   Height="20"
+                   Style="{StaticResource DefaultLabelText}"
+                   Text="Player 4" />
+        <Controls:DeckShape x:Name="Player4Hand"
+                            Canvas.Left="279"
+                            Canvas.Bottom="25"
+                            CardSpacerX="50"
+                            CardSpacerY="0"
+                            MaxCardsSpace="10" />
+
+        <TextBox x:Name="Pbn" Canvas.Left="10"
+                Canvas.Top="10"
+                Width="300"
+                Height="35" KeyUp="Pbn_KeyUp"  />
+        <Button Width="150" Height="35" Canvas.Top="70" Canvas.Left="150" x:Name="Start" Content="Start game" Click="Start_Click" />
+    </Canvas>
+</Window>

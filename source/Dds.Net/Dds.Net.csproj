@@ -62,27 +62,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DdsCalcDDtableException.cs" />
     <Compile Include="DdsConnect.cs" />
+    <Compile Include="Dto\BestCard.cs" />
     <Compile Include="Integration\DdsImport.cs" />
-    <Compile Include="DdsHelper.cs" />
+    <Compile Include="Integration\DdsHelper.cs" />
     <Compile Include="Integration\DdTableDealPbn.cs" />
     <Compile Include="Integration\DdTableResults.cs" />
     <Compile Include="Integration\DealPbn.cs" />
     <Compile Include="Integration\FutureTricks.cs" />
     <Compile Include="DdsSolveBoardException.cs" />
-    <Compile Include="Dto\Card.cs" />
     <Compile Include="Dto\FutureTricks.cs" />
-    <Compile Include="Dto\Player.cs" />
-    <Compile Include="Dto\Trump.cs" />
-    <Compile Include="Dto\DealPbn.cs" />
-    <Compile Include="Dto\Rank.cs" />
-    <Compile Include="Dto\Suit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="dds.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bridge.Domain\Bridge.Domain.csproj">
+      <Project>{a83166e1-a1f3-4b4f-b8b3-f215ce1b215b}</Project>
+      <Name>Bridge.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

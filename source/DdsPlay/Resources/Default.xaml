@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--  Aggregate all the resource dictionaries into a single resource dictionary  -->
+    <ResourceDictionary.MergedDictionaries>
+
+        <ResourceDictionary Source="Styles/Brushes.xaml" />
+        <ResourceDictionary Source="Styles/FontStyles.xaml" />
+
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

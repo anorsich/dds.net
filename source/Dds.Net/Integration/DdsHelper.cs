@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Dds.Net
 {
-    public class DdsHelper
+    internal class DdsHelper
     {
         /// <summary>
         /// Converts Portable Bridge Notation File from string to 80 chars array.
@@ -13,7 +13,7 @@ namespace Dds.Net
         /// </summary>
         /// <param name="pbn">Pbn code</param>
         /// <returns>80 chars array</returns>
-        public static char[] PbnStringToChars(string pbn)
+        internal static char[] PbnStringToChars(string pbn)
         {
             var result = new char[80];
             for (int i = 0; i < pbn.Length; i++)

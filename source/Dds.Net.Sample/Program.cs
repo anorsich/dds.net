@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Dds.Net.Dto;
+using Bridge.Domain;
+using Bridge.Domain.Utils;
 
 namespace Dds.Net.Sample
 {
@@ -11,35 +11,35 @@ namespace Dds.Net.Sample
         static void Main(string[] args)
         {
             var dds = new DdsConnect();
-
-            Console.WriteLine("Initial board in pbn: E:AT5.AJT.A632.KJ7 Q763.KQ9.KQJ94.T 942.87653..98653 KJ8.42.T875.AQ42");
-            Console.WriteLine("East start with Diamond 2");
-            var remainCards = "E:AT5.AJT.A63.KJ7 Q763.KQ9.KQJ94.T 942.87653..98653 KJ8.42.T875.AQ42";
-            Console.WriteLine(remainCards);
-            var deal = new DealPbn();
-            deal.RemainCardsPbn = remainCards;
-            deal.TrickDealer = Player.East;
-            deal.Trump = Trump.NoTrump;
-            deal.CurrentTrickCards = new List<Card>()
+            var pbnCode = "E:AT5.AJT.A632.KJ7 Q763.KQ9.KQJ94.T 942.87653..98653 KJ8.42.T875.AQ42";
+            Console.WriteLine("Board: " + pbnCode);
+            
+            var game = BridgeHelper.GetGameFromPbn(pbnCode);
+            var res = dds.CalculateMakeableContracts(pbnCode);
+            Console.WriteLine("Best results:");
+            foreach (var contract in res)
             {
-                new Card(Rank.Two, Suit.Diamonds)
-            };
+                Console.WriteLine(contract);
+            }
+            Console.WriteLine("------------- Game Starts ----------------");
+            Console.WriteLine("Trump: " + game.Contract.Trump);
+            var player = game.Declarer;
+            while (game.CardsRemaning > 0)
+            {
+                var result = dds.SolveBoardPbnBestCard(game);
+                Console.WriteLine(player + ": " + result.Card + ". Score: " + result.Score);
+                player = game.PlayCard(result.Card, player);
 
+                if (game.CurrentTrick.Deck.Count == 0)
+                {
+                    Console.WriteLine("Trick Winner: " + game.Tricks.Last().TrickWinner);
+                }
+            }
 
-            var result = dds.SolveBoardPbn(deal,
-                //Parameter ”target” is the number of tricks to be won by the side to play, 
-                //    //-1 means that the program shall find the maximum number.
-                //    //For equivalent  cards only the highest is returned.
-                              -1,
-                //    //target=1-13, solutions=1:  Returns only one of the cards. 
-                //    //Its returned score is the same as target whentarget or higher tricks can be won. 
-                //    //Otherwise, score –1 is returned if target cannot be reached, or score 0 if no tricks can be won. 
-                //    //target=-1, solutions=1:  Returns only one of the optimum cards and its score.
-                              1, 0);
+            Console.WriteLine("-----------Results----------");
+            Console.WriteLine("South/North: " + game.NorthSouthTricksMade + " tricks");
+            Console.WriteLine("East/West: " + game.EastWestTricksMade + " tricks");
 
-            var nextCard = result.FutureCards.First();
-
-            Console.WriteLine("Next card: " + nextCard);
             Console.ReadKey();
         }
     }

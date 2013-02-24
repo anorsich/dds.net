@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--  Brushes for Fonts  -->
+    <SolidColorBrush x:Key="DefaultFontBrush" Color="AntiqueWhite" />
+    <SolidColorBrush x:Key="DefaultHyperlinkBrush" Color="#2388C9" />
+    <SolidColorBrush x:Key="HyperlinkMouseOverBrush" Color="#FFC534" />
+
+    <!--  Brushes for background colors  -->
+    <SolidColorBrush x:Key="DefaultBackgroundBrush" Color="White" />
+
+    <LinearGradientBrush x:Key="ButtonBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#EAF5FF" />
+        <GradientStop Offset="0.25" Color="#87D5F8" />
+        <GradientStop Offset="0.5" Color="#16B3F0" />
+        <GradientStop Offset="0.75" Color="#009AD6" />
+        <GradientStop Offset="1" Color="#0081B2" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="HeaderBackgroundBrush" Color="#717075" />
+    <SolidColorBrush x:Key="HeaderForegroundBrush" Color="White" />
+
+    <!--  Brushes for Borders  -->
+    <SolidColorBrush x:Key="DefaultBorderBrush" Color="Navy" />
+
+</ResourceDictionary>
