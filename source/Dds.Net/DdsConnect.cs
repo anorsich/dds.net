@@ -76,6 +76,12 @@ namespace Dds.Net
             return new BestCard() { Card = result.FutureCards.Cards.First(), Score = result.Scores[0] };
         }
 
+        public BestCard SolveBoard(BridgeGame game)
+        {
+            var result = SolveBoardPbn(game,-1,3, 0);
+            return new BestCard() { Card = result.FutureCards.Cards.First(), Score = result.Scores[0] };
+        }
+
         public List<Contract> CalculateMakeableContracts(string pbn)
         {
             var ret = new List<Contract>();

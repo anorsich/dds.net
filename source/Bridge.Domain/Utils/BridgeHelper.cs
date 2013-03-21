@@ -87,5 +87,10 @@ namespace Bridge.Domain.Utils
                 return cards;
             });
         }
+
+        public static Card GetCard(string card)
+        {
+            return new Card(new Rank(card[1]),Suit.Suits.Find(x=> x.ShortName == new string(card[0],1)) );
+        }
     }
 }

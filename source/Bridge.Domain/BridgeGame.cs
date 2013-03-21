@@ -7,7 +7,8 @@ namespace Bridge.Domain
     public class BridgeGame
     {
         private Trick _currentTrick;
-        
+        private PlayerPosition _nextPlayer;
+
         public BridgeGame(Dictionary<PlayerPosition, Deck> state, PlayerPosition declarer)
         {
             GameState = state;
@@ -40,7 +41,7 @@ namespace Bridge.Domain
 
         public PlayerPosition PlayCard(Card card, PlayerPosition playerPosition)
         {
-            var nextPlayer = BridgeHelper.GetNextPlayerPosition(playerPosition);
+            _nextPlayer = BridgeHelper.GetNextPlayerPosition(playerPosition);
 
             if (_currentTrick.Deck.Count == 0)
             {
@@ -60,13 +61,13 @@ namespace Bridge.Domain
                 Tricks.Add(_currentTrick);
                 var winner = FindWinner(_currentTrick, Contract.Trump);
                 _currentTrick.TrickWinner = winner;
-                nextPlayer = winner;
+                _nextPlayer = winner;
                 _currentTrick = new Trick() { TrickDealer = winner };
             }
 
             GameState[playerPosition].RemoveCard(card);
 
-            return nextPlayer;
+            return _nextPlayer;
         }
 
         #region Helper properties
