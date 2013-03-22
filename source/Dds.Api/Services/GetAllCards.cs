@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Bridge.Domain;
 using Bridge.Domain.Utils;
+using Dds.Contract;
 using Dds.Net;
 using PBN;
 using ServiceStack.ServiceHost;
@@ -8,26 +10,7 @@ using ServiceStack.ServiceInterface;
 
 namespace Dds.Api.Services
 {
-    [Route("/get-all-cards")]
-    [Route("/get-all-cards/{PBN}")]
-    public class GetAllCards
-    {
-        public string PBN { get; set; } 
-    }
-
-    public class GetAllCardsResponse
-    {
-        /// <summary>
-        /// Number of searched nodes 
-        /// </summary>
-        public int Nodes { get; set; }
-
-
-        /// <summary>
-        /// Possible plays
-        /// </summary>
-        public List<CardResult> Cards { get; set; }
-    }
+  
 
     public class GetAllCardsService: Service
     {
@@ -47,26 +30,19 @@ namespace Dds.Api.Services
                 {
                     foreach (var card in trick)
                     {
-                        if (card == "CK")
-                        {
-                            var s = 1;
-                        }
                         player = game.PlayCard(BridgeHelper.GetCard(card), player);
                     }
                 }
             }
-            var result = dds.SolveBoardPbnBestCard(game);
-            return new GetAllCardsResponse
+            var result = dds.SolveBoard(game);
+            var response = new GetAllCardsResponse {Nodes = result.Nodes, Cards = new List<CardResult>()};
+            for (int i = 0; i < result.FutureCards.Count; i++)
             {
-
-            };
+                var card = result.FutureCards.Cards[i];
+                response.Cards.Add(new CardResult{ Rank = card.Rank.ShortName, Suit = card.Suit.ShortName, Score = result.Scores[i]});
+            }
+            response.Cards = response.Cards.OrderByDescending(x=> x.Score).ToList();
+            return response;
         }
-    }
-
-    public class CardResult
-    {
-        public string Rank { get; set; }
-        public string Suit { get; set; }
-        public int Score { get; set; }
     }
 }

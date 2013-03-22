@@ -14,7 +14,7 @@
     <RootNamespace>Dds.Api</RootNamespace>
     <AssemblyName>Dds.Api</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -29,7 +29,7 @@
     <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>1</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -93,7 +93,9 @@
   <ItemGroup>
     <Content Include="default.htm" />
     <Content Include="README.txt" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AppHost.cs" />
@@ -101,6 +103,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\GetAllCards.cs" />
     <Compile Include="Services\GetCard.cs" />
+    <Compile Include="Services\SolveGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -115,6 +118,10 @@
     <ProjectReference Include="..\Bridge.Domain\Bridge.Domain.csproj">
       <Project>{A83166E1-A1F3-4B4F-B8B3-F215CE1B215B}</Project>
       <Name>Bridge.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dds.Contract\Dds.Contract.csproj">
+      <Project>{7C1D25CF-0A1B-41BB-A3A3-9869FEF3A8C3}</Project>
+      <Name>Dds.Contract</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dds.Net\Dds.Net.csproj">
       <Project>{F3672BD0-CF43-43BB-BE0A-4ABAA1CDE779}</Project>
@@ -138,9 +145,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>39211</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:23856/</IISUrl>
+          <IISUrl>http://localhost:2111/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
