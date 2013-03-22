@@ -34,7 +34,8 @@ namespace Tests
         public void Test2()
         {
             var client = new DdsApiClient();
-            var s = client.SolveGame(testPbn2);
+            var response = client.SolveGame(testPbn2);
+            Assert.NotNull(response);
         }
     }
 }

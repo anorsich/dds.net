@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dds.Api", "Dds.Api\Dds.Api.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PbnParser", "PbnParser\PbnParser.csproj", "{9D5B79E7-CD5D-45CD-A2BE-AB67DAFBB887}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dds.Contract", "Dds.Contract\Dds.Contract.csproj", "{7C1D25CF-0A1B-41BB-A3A3-9869FEF3A8C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,18 @@ Global
 		{9D5B79E7-CD5D-45CD-A2BE-AB67DAFBB887}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{9D5B79E7-CD5D-45CD-A2BE-AB67DAFBB887}.Release|x64.ActiveCfg = Release|Any CPU
 		{9D5B79E7-CD5D-45CD-A2BE-AB67DAFBB887}.Release|x86.ActiveCfg = Release|Any CPU
+		{7C1D25CF-0A1B-41BB-A3A3-9869FEF3A8C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C1D25CF-0A1B-41BB-A3A3-9869FEF3A8C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C1D25CF-0A1B-41BB-A3A3-9869FEF3A8C3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7C1D25CF-0A1B-41BB-A3A3-9869FEF3A8C3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7C1D25CF-0A1B-41BB-A3A3-9869FEF3A8C3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7C1D25CF-0A1B-41BB-A3A3-9869FEF3A8C3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7C1D25CF-0A1B-41BB-A3A3-9869FEF3A8C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C1D25CF-0A1B-41BB-A3A3-9869FEF3A8C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C1D25CF-0A1B-41BB-A3A3-9869FEF3A8C3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7C1D25CF-0A1B-41BB-A3A3-9869FEF3A8C3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7C1D25CF-0A1B-41BB-A3A3-9869FEF3A8C3}.Release|x64.ActiveCfg = Release|Any CPU
+		{7C1D25CF-0A1B-41BB-A3A3-9869FEF3A8C3}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
