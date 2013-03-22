@@ -10,7 +10,7 @@ namespace Dds.Api.Services
 {
     [Route("/get-all-cards")]
     [Route("/get-all-cards/{PBN}")]
-    public class GetAllCardsRequest
+    public class GetAllCards
     {
         public string PBN { get; set; } 
     }
@@ -31,10 +31,10 @@ namespace Dds.Api.Services
 
     public class GetAllCardsService: Service
     {
-        public string testPbn = "\r\n[Dealer \"S\"]\r\n[Deal \"S:K4.AT974.543.AK3 QJT83.K5.KJ72.Q5 A92.62.A.JT97642 765.QJ83.QT986.8\"]\r\n[Auction \"S\"]\r\n6C Pass Pass Pass\r\n[Play \"W\"]\r\nSQ SA S5 S4\r\nS9 S6 SK S3\r\nHA H5 H2 H8\r\nHT HK H6 H3\r\nSJ S2 S7 C3\r\nCK C5 C2 C8\r\nCA CQ C4 D6\r\nD3 D2 DA D8\r\nCT D9 D4 D7\r\nC9 DT D5 S8\r\nCJ DQ H9\r\n\r\n";
+        public string testPbn = "\r\n[Dealer \"S\"]\r\n[Deal \"S:K4.AT974.543.AK3 QJT83.K5.KJ72.Q5 A92.62.A.JT97642 765.QJ83.QT986.8\"]\r\n[Contract \"4NT\"]\r\n[Auction \"S\"]\r\n6C Pass Pass Pass\r\n[Play \"W\"]\r\nSQ SA S5 S4\r\nS9 S6 SK S3\r\nHA H5 H2 H8\r\nHT HK H6 H3\r\nSJ S2 S7 C3\r\n";
 
 
-        public object Any(GetAllCardsRequest getAllCards)
+        public object Any(GetAllCards getAllCards)
         {
             var parseResult = PbnParser.ParseGame(testPbn);
             var dds = new DdsConnect();
@@ -47,6 +47,10 @@ namespace Dds.Api.Services
                 {
                     foreach (var card in trick)
                     {
+                        if (card == "CK")
+                        {
+                            var s = 1;
+                        }
                         player = game.PlayCard(BridgeHelper.GetCard(card), player);
                     }
                 }

@@ -12,7 +12,7 @@ namespace Tests
         public void test()
         {
             var service = new GetAllCardsService();
-            var result = (GetAllCardsResponse)service.Any(new GetAllCardsRequest() {PBN = testPbn});
+            var result = (GetAllCardsResponse)service.Any(new GetAllCards() {PBN = testPbn});
             Assert.NotNull(result);
         }
     }

@@ -57,7 +57,7 @@ namespace PBN
                 {
                     yield break;
                 }
-                yield return input.Split(' ');
+                yield return line.Split(' ');
             }
         }
     }

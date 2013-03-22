@@ -2,7 +2,7 @@
 
 namespace Dds.Api.Services
 {
-    public class GetCardRequest
+    public class GetCard
     {
         public string PBN { get; set; } 
     }
@@ -16,7 +16,7 @@ namespace Dds.Api.Services
 
     public class GetCardService:Service
     {
-        public object Any(GetCardRequest request)
+        public object Any(GetCard request)
         {
             return new GetCardResponse();
         }
