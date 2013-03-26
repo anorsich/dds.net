@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Bridge.Domain;
 using Bridge.Domain.Utils;
 using Dds.Net.Dto;
@@ -17,7 +16,7 @@ namespace Dds.Net
             if (game.CurrentTrick.Deck.Count > 3)
                 throw new ArgumentException("Invalid current trick cards count", "CurrentTrick.Deck.Count");
 
-            var deal = new Integration.DealPbn();
+            var deal = new DealPbn();
             deal.trump = game.Contract.Trump.Order;
             deal.first = game.CurrentTrick.TrickDealer.Order;
 

@@ -7,14 +7,16 @@ namespace Bridge.Domain
 {
     public class PlayerPosition : IEquatable<PlayerPosition>
     {
-        public static PlayerPosition North = new PlayerPosition(0, "North");
-        public static PlayerPosition East = new PlayerPosition(1, "East");
-        public static PlayerPosition South = new PlayerPosition(2, "South");
-        public static PlayerPosition West = new PlayerPosition(3, "West");
+        public static PlayerPosition North = new PlayerPosition(0, "North",1);
+        public static PlayerPosition East = new PlayerPosition(1, "East",2);
+        public static PlayerPosition South = new PlayerPosition(2, "South",3);
+        public static PlayerPosition West = new PlayerPosition(3, "West",0);
         public static List<PlayerPosition> Players = new List<PlayerPosition>() { North, East, South, West };
 
 
         public int Order { get; private set; }
+
+        public int PbnIndex { get; private set; }
 
         public string FullName { get; private set; }
 
@@ -39,13 +41,14 @@ namespace Bridge.Domain
         }
 
         internal PlayerPosition(PlayerPosition playerPosition)
-            : this(playerPosition.Order, playerPosition.FullName)
+            : this(playerPosition.Order, playerPosition.FullName,playerPosition.PbnIndex)
         {
         }
 
-        internal PlayerPosition(int order, string fullName)
+        internal PlayerPosition(int order, string fullName, int pbnIndex)
         {
             Order = order;
+            PbnIndex = pbnIndex;
             FullName = fullName;
             FirstLetter = fullName[0].ToString(CultureInfo.InvariantCulture).ToUpper();
         }
