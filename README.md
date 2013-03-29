@@ -3,6 +3,8 @@ dds.net
 
 The .net wrapper around Bo Haglund  bridge double dummy solver. http://privat.bahnhof.se/wb758135/
 
+api link http://dds-2.apphb.com/metadata
+
 Bridge.Domain project - incapsulate bridge game logic and supposed to be used to with another bridge based applications.
 
 Dds.Net project -- integration with dds.dll
