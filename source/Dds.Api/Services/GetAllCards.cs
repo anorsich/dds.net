@@ -5,7 +5,6 @@ using Bridge.Domain.Utils;
 using Dds.Contract;
 using Dds.Net;
 using PBN;
-using ServiceStack.ServiceHost;
 using ServiceStack.ServiceInterface;
 
 namespace Dds.Api.Services
