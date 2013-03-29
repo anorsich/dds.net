@@ -1,12 +1,4 @@
-using System;
-using System.Linq;
-using System.Configuration;
-using System.Collections.Generic;
-using ServiceStack.Configuration;
-using ServiceStack.OrmLite;
-using ServiceStack.ServiceInterface;
-using ServiceStack.ServiceInterface.Auth;
-using ServiceStack.ServiceInterface.ServiceModel;
+using Dds.Api.Services;
 using ServiceStack.WebHost.Endpoints;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(Dds.Api.App_Start.AppHost), "Start")]
@@ -25,7 +17,7 @@ namespace Dds.Api.App_Start
 		: AppHostBase
 	{		
 		public AppHost() //Tell ServiceStack the name and where to find your web services
-			: base("DDS.NET Web API", typeof(HelloService).Assembly) { }
+			: base("DDS.NET Web API", typeof(SolveGameService).Assembly) { }
 
 		public override void Configure(Funq.Container container)
 		{
@@ -33,9 +25,9 @@ namespace Dds.Api.App_Start
 			ServiceStack.Text.JsConfig.EmitCamelCaseNames = true;
 		
 			//Configure User Defined REST Paths
-			Routes
-			  .Add<Hello>("/hello")
-			  .Add<Hello>("/hello/{Name*}");
+            //Routes
+            //  .Add<Hello>("/hello")
+            //  .Add<Hello>("/hello/{Name*}");
 
 			//Uncomment to change the default ServiceStack configuration
 			//SetConfig(new EndpointHostConfig {

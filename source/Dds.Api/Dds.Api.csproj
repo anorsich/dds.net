@@ -99,7 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AppHost.cs" />
-    <Compile Include="Services\Hello.cs" />
+    <Compile Include="GameReplayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\GetAllCards.cs" />
     <Compile Include="Services\GetCard.cs" />

@@ -5,7 +5,7 @@ namespace Dds.Contract
 {
     [Route("/get-all-cards")]
     [Route("/get-all-cards/{PBN}")]
-    public class GetAllCards
+    public class GetAllCards : IReturn<GetAllCardsResponse>
     {
         public string PBN { get; set; }
     }

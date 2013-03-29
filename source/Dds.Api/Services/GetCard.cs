@@ -1,24 +1,23 @@
-﻿using ServiceStack.ServiceInterface;
+﻿using Dds.Contract;
+using Dds.Net;
+using ServiceStack.ServiceInterface;
 
 namespace Dds.Api.Services
 {
-    public class GetCard
-    {
-        public string PBN { get; set; } 
-    }
-
-    public class GetCardResponse
-    {
-        public string Rank { get; set; } 
-        public string Suit { get; set; }
-        public int Score { get; set; }
-    }
-
     public class GetCardService:Service
     {
         public object Any(GetCard request)
         {
-            return new GetCardResponse();
+            var dds = new DdsConnect();
+            var game = GameReplayer.Replay(request.PBN);
+            var result = dds.SolveBoard(game);
+            var card = result.FutureCards.Cards[0];
+            return new GetCardResponse
+            {
+                Rank = card.Rank.ShortName,
+                Suit = card.Suit.ShortName,
+                Score = result.Scores[0]
+            };
         }
     }
 }
