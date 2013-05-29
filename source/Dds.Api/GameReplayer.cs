@@ -19,8 +19,14 @@ namespace Dds.Api
                 foreach (var trick in play)
                 {
                     number++;
+                    var skip = player.PbnIndex;
                     for (int i = 0; i < trick.Length; i++)
                     {
+                        if (skip > 0)
+                        {
+                            skip--;
+                            continue;
+                        }
                         var card = trick[player.PbnIndex];
                         if (onCardPaying != null) onCardPaying(game, player, card);
                         player = game.PlayCard(BridgeHelper.GetCard(card), player);
