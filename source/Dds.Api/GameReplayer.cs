@@ -19,7 +19,7 @@ namespace Dds.Api
                 foreach (var trick in play)
                 {
                     number++;
-                    for (int i = 0; i < 4; i++)
+                    for (int i = 0; i < trick.Length; i++)
                     {
                         var card = trick[player.PbnIndex];
                         if (onCardPaying != null) onCardPaying(game, player, card);
