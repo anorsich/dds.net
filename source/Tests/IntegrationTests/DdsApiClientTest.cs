@@ -11,7 +11,8 @@ namespace Tests.IntegrationTests
     public class DdsApiClientTest
     {
         public string testPbn =
-            "\r\n[Dealer \"S\"]\r\n[Deal \"S:QT3.AK3.AQ8.8764 KJ9.JT8762.JT62. A652.Q.9743.AQT3 874.954.K5.KJ952\"]\r\n[Auction \"S\"]\r\n3NT Pass Pass Pass\r\n[Declarer \"South\"]\r\n[Contract \"3NT\"]\r\n[Result \"1\"]\r\n[Play \"W\"]\r\nHJ HQ H5 H3\r\nD4\r\n\r\n";       
+            "\r\n[Dealer \"S\"]\r\n[Deal \"S:87.AKT72.AT3.754 53.954.J4.KQT862 AKQT64.Q.Q6.AJ93 J92.J863.K98752.\"]\r\n[Auction \"S\"]\r\n6NT Pass Pass Pass\r\n[Declarer \"South\"]\r\n[Contract \"6NT\"]\r\n[Result \"1\"]\r\n[Play \"W\"]\r\nCK CA D2 C5\r\nSA\r\n\r\n";
+
         [Test]
         public void Appharbor()
         {
