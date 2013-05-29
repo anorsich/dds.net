@@ -3,7 +3,6 @@
 namespace Dds.Contract
 {
     [Route("/get-card")]
-    [Route("/get-card/{PBN}")]
     public class GetCard : IReturn<GetCardResponse>
     {
         public string PBN { get; set; }

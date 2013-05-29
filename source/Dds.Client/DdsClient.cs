@@ -22,5 +22,10 @@ namespace Dds.Client
         {
             return _client.Post(new SolveGame {PBN = pbn});
         }
+
+        public GetCardResponse GetCard(string pbn)
+        {
+            return _client.Post(new GetCard() {PBN = pbn});
+        }
     }
 }

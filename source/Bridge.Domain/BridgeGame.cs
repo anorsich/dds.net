@@ -16,7 +16,7 @@ namespace Bridge.Domain
             Declarer = declarer;
             Dummy = BridgeHelper.GetNextPlayerPosition(BridgeHelper.GetNextPlayerPosition(declarer));
             Contract = new Contract();
-            _currentTrick = new Trick() { TrickDealer = Declarer };
+            _currentTrick = new Trick() { TrickDealer = BridgeHelper.GetNextPlayerPosition(declarer) };
         }
 
         public Dictionary<PlayerPosition, Deck> GameState { get; private set; }
