@@ -18,5 +18,7 @@
         {
             get { return Deck.BottomCard.Suit; }
         }
+
+
     }
 }

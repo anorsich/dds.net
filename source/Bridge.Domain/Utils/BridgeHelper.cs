@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 namespace Bridge.Domain.Utils
 {
     public class BridgeHelper
     {
-        public static BridgeGame GetGameFromPbn(string pbnHand)
+        public static BridgeGame GetGameFromPbn(string pbnHand, string contract)
         {
             var hands = new Dictionary<PlayerPosition, Deck>();
             var pbnhands = pbnHand.Split(':', ' ');
@@ -18,7 +17,7 @@ namespace Bridge.Domain.Utils
                 side = GetNextPlayerPosition(side);
             }
 
-            return new BridgeGame(hands, declarer);
+            return new BridgeGame(hands, declarer, contract);
         }
 
         public static PlayerPosition GetNextPlayerPosition(PlayerPosition currentSide)

@@ -23,5 +23,20 @@ namespace Bridge.Domain
         {
             return String.Format("{0}:{1}{2}", PlayerPosition, Value, Trump);
         }
+
+        public Contract(string contract, PlayerPosition declarer)
+        {
+            Value = int.Parse(contract[0].ToString());
+            PlayerPosition = declarer;
+            var suit = Suit.Suits.FirstOrDefault(x => x.ShortName == new string(contract[1], 1));
+            if (suit !=null)
+            {
+                Trump = new Trump(suit);
+            }
+            else
+            {
+                Trump = Trump.NoTrump;
+            }
+        }
     }
 }

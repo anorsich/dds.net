@@ -9,13 +9,14 @@ namespace Bridge.Domain
         private Trick _currentTrick;
         private PlayerPosition _nextPlayer;
 
-        public BridgeGame(Dictionary<PlayerPosition, Deck> state, PlayerPosition declarer)
+        public BridgeGame(Dictionary<PlayerPosition, Deck> state, PlayerPosition declarer, string contract)
         {
             GameState = state;
             Tricks = new List<Trick>();
             Declarer = declarer;
             Dummy = BridgeHelper.GetNextPlayerPosition(BridgeHelper.GetNextPlayerPosition(declarer));
-            Contract = new Contract();
+            Contract = new Contract(contract, declarer);
+
             _currentTrick = new Trick() { TrickDealer = BridgeHelper.GetNextPlayerPosition(declarer) };
         }
 
@@ -92,5 +93,6 @@ namespace Bridge.Domain
                        ? highestTrump.First().PlayerPosition
                        : highestInTrickDealerSuit.First().PlayerPosition;
         }
+
     }
 }
