@@ -21,7 +21,7 @@ namespace Dds.Api
                     number++;
                     for (int i = 0; i < trick.Length; i++)
                     {
-                        var card = trick[i];
+                        var card = trick[trick.Length == 4 ? player.PbnIndex: i];
                         if (onCardPaying != null) onCardPaying(game, player, card);
                         player = game.PlayCard(BridgeHelper.GetCard(card), player);
                     }
