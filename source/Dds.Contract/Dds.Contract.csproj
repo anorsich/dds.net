@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="GetAllCards.cs" />
     <Compile Include="GetCard.cs" />
+    <Compile Include="PlayGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolveGame.cs" />
   </ItemGroup>

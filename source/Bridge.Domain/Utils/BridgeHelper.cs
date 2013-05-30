@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 namespace Bridge.Domain.Utils
@@ -62,6 +64,13 @@ namespace Bridge.Domain.Utils
 
 
             return sb.ToString().TrimEnd('.');
+        }
+
+        
+
+        public static string DeckToPbnPlay(Deck deck)
+        {
+            return string.Join(" ", deck.Cards.OrderBy(x=> x.PlayerPosition.PbnIndex).Select(x => x.Rank.ShortName + x.Suit.ShortName));
         }
 
         private static Deck GetDeck(string pbnHand)
