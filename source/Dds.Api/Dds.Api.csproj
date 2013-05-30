@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="default.htm" />
+    <Content Include="default.html" />
     <Content Include="README.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
