@@ -10,7 +10,7 @@ namespace Dds.Api
         public static BridgeGame Replay(string pbn, Action<BridgeGame, PlayerPosition, string> onCardPaying = null, Action<int> onTrickPlayed= null)
         {
             var parseResult = PbnParser.ParseGame(pbn);
-            var game = BridgeHelper.GetGameFromPbn(parseResult.Deal, parseResult.Contract);
+            var game = BridgeHelper.GetGameFromPbn(parseResult.Deal, parseResult.Contract, parseResult.Declarer);
             var player = PlayerPosition.Players.Find(x => x.FirstLetter == parseResult.FirstPlayer);
             if (!string.IsNullOrEmpty(parseResult.Play))
             {

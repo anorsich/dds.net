@@ -7,7 +7,7 @@ namespace Bridge.Domain.Utils
 {
     public class BridgeHelper
     {
-        public static BridgeGame GetGameFromPbn(string pbnHand, string contract)
+        public static BridgeGame GetGameFromPbn(string pbnHand, string contract, string dec)
         {
             var hands = new Dictionary<PlayerPosition, Deck>();
             var pbnhands = pbnHand.Split(':', ' ');
@@ -18,7 +18,10 @@ namespace Bridge.Domain.Utils
                 hands.Add(side, GetDeck(pbnhands[i]));
                 side = GetNextPlayerPosition(side);
             }
-
+            if (!string.IsNullOrEmpty(dec))
+            {
+                declarer = new PlayerPosition(dec);
+            }
             return new BridgeGame(hands, declarer, contract);
         }
 

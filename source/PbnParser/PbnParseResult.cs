@@ -7,6 +7,7 @@ namespace PBN
         private class PbnKeys
         {
             public const string Dealer = "Dealer";
+            public const string Declarer = "Declarer";
             public const string Auction = "Auction";
             public const string Deal = "Deal";
             public const string Contract = "Contract";
@@ -36,6 +37,11 @@ namespace PBN
         public string Dealer
         {
             get { return this[PbnKeys.Dealer].Value; }
+        }
+
+        public string Declarer
+        {
+            get { return this[PbnKeys.Declarer].Value; }
         }
 
         public string Deal

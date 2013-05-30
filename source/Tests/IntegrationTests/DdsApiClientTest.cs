@@ -60,7 +60,7 @@ namespace Tests.IntegrationTests
         public void ApphbPlayGame()
         {
             var pbn =
-                "\r\n[Deal \"W:A7.J43.AQ6.K9632:KT6542.Q6.J4.A85:QJ983.AT72.KT.T4:.K985.987532.QJ7\"]\r\n[Declarer \"E\"]\r\n[Contract \"3NT\"]\r\n[Play \"E\"]\r\n";
+                "\r\n[Deal \"W:A7.J43.AQ6.K9632:KT6542.Q6.J4.A85:QJ983.AT72.KT.T4:.K985.987532.QJ7\"]\r\n[Declarer \"E\"]\r\n[Contract \"3NT\"]\r\n[Play \"S\"]\r\n";
 
             WithStopwatch(() =>
             {
@@ -75,7 +75,7 @@ namespace Tests.IntegrationTests
         public void LocalPlayGame()
         {
             var pbn =
-                "\r\n[Deal \"W:A7.J43.AQ6.K9632:KT6542.Q6.J4.A85:QJ983.AT72.KT.T4:.K985.987532.QJ7\"]\r\n[Declarer \"E\"]\r\n[Contract \"3NT\"]\r\n[Play \"E\"]\r\n";
+                "\r\n[Deal \"W:A7.J43.AQ6.K9632:KT6542.Q6.J4.A85:QJ983.AT72.KT.T4:.K985.987532.QJ7\"]\r\n[Declarer \"E\"]\r\n[Contract \"3NT\"]\r\n[Play \"S\"]\r\n";
 
             WithStopwatch(() =>
             {
