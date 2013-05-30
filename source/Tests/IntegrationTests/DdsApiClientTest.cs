@@ -57,6 +57,21 @@ namespace Tests.IntegrationTests
             });
         } 
         [Test]
+        public void ApphbPlayGame()
+        {
+            var pbn =
+                "\r\n[Deal \"W:A7.J43.AQ6.K9632:KT6542.Q6.J4.A85:QJ983.AT72.KT.T4:.K985.987532.QJ7\"]\r\n[Declarer \"E\"]\r\n[Contract \"3NT\"]\r\n[Play \"E\"]\r\n";
+
+            WithStopwatch(() =>
+            {
+                var client = new DdsApiClient();
+                var response = client.PlayGame(pbn);
+                Assert.NotNull(response);
+            });
+
+        }
+
+        [Test]
         public void LocalPlayGame()
         {
             var pbn =
@@ -65,7 +80,7 @@ namespace Tests.IntegrationTests
             WithStopwatch(() =>
             {
                 var service = new PlayGameService();
-                var response = (PlayGameResponse) service.Any(new PlayGame() {PBN = pbn});
+                var response = (PlayGameResponse)service.Any(new PlayGame() { PBN = pbn });
                 Assert.NotNull(response);
             });
         } 
