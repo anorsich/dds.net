@@ -14,7 +14,7 @@ namespace Tests.IntegrationTests
             "\r\n[Dealer \"S\"]\r\n[Deal \"S:AJ3.62.J975.J542 T876.KJT43.KQT.A K9.AQ987.2.K8763 Q542.5.A8643.QT9\"]\r\n[Auction \"S\"]\r\n4C Pass Pass Pass\r\n[Declarer \"South\"]\r\n[Contract \"4C\"]\r\n[Result \"1\"]\r\n[Play \"W\"]\r\nDT D2 DA D5\r\nDK C3 D6 D7\r\n\r\n\r\n";
 
         [Test]
-        public void Appharbor()
+        public void AppharborSolveGame()
         {
             WithStopwatch(() =>
             {
@@ -25,7 +25,7 @@ namespace Tests.IntegrationTests
             });
         }     
         [Test]
-        public void Appharbor2()
+        public void AppharborGetCard2()
         {
             WithStopwatch(() =>
             {
@@ -36,7 +36,7 @@ namespace Tests.IntegrationTests
         }  
         
         [Test]
-        public void Local()
+        public void LocalSolveGame()
         {
             WithStopwatch(() =>
             {
@@ -47,7 +47,7 @@ namespace Tests.IntegrationTests
             });
         } 
         [Test]
-        public void Local2()
+        public void LocalGetCard()
         {
             WithStopwatch(() =>
             {
