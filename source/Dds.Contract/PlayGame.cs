@@ -3,7 +3,7 @@ using ServiceStack.ServiceHost;
 
 namespace Dds.Contract
 {
-    [Route("play-game")]
+    [Route("/play-game")]
     public class PlayGame : IReturn<PlayGameResponse>
     {
         public string PBN;
