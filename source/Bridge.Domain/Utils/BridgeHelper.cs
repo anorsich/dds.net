@@ -70,7 +70,7 @@ namespace Bridge.Domain.Utils
 
         public static string DeckToPbnPlay(Deck deck)
         {
-            return string.Join(" ", deck.Cards.OrderBy(x=> x.PlayerPosition.PbnIndex).Select(x => x.Rank.ShortName + x.Suit.ShortName));
+            return string.Join(" ", deck.Cards.OrderBy(x=> x.PlayerPosition.PbnIndex).Select(x =>x.Suit.ShortName + x.Rank.ShortName));
         }
 
         private static Deck GetDeck(string pbnHand)
